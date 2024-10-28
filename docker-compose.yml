@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  python-server:
+    build:
+      context: ./python-server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./python-server:/app
+    networks:
+      - websocket-net
+
+  nextjs-app:
+    build:
+      context: ./nextjs-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs-app:/app
+    networks:
+      - websocket-net
+
+networks:
+  websocket-net:
+    driver: bridge
